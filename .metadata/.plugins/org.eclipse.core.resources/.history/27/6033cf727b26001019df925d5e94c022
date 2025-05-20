@@ -1,5 +1,0 @@
-package GenericUtlities;
-
-public @interface BeforeSuite {
-
-}
