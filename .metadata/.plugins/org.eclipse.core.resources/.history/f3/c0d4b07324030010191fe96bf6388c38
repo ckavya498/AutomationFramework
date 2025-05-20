@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Options {
+	
+//WATS to display all the options text as an output in Alphabetical order in FB MONTH field
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+        driver.findElement(By.linkText("Create new account")).click();
+        WebElement ref = driver.findElement(By.id("month"));
+        Select s = new Select(ref);
+        List<WebElement> list = s.getOptions();
+        List<String> monthNames = new ArrayList<String>();
+        for(int i=0; i<list.size();i++) {
+        	WebElement r = list.get(i);
+        s.selectByIndex(i);
+       // System.out.println(list.getText());
+        }
+        Collections.sort(monthNames);
+        System.out.println("Months in Alphabetical order" + monthNames);
+        for(String month : monthNames) {
+        	System.out.println(month);
+        }
+}
+}

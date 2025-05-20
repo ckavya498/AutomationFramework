@@ -1,0 +1,30 @@
+package WebDriver_Webelement;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Get_Attribute1 {
+
+//WATS to display default text as an output & also verify text field contains default text or not in flipkart app 
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new EdgeDriver();
+		driver.get("https://www.flipkart.com/");
+		WebElement e = driver.findElement(By.className("Pke_EE"));		
+		//getAttribute()		
+		String str = e.getAttribute("placeholder");
+        System.out.println("Default value =" +str);
+        //verification
+        if(str.contains("Searc")) {
+        	System.out.println("Default value is present");
+        } else {
+        	System.out.println("Default value is not present");
+        }
+        driver.close();
+	}
+
+}

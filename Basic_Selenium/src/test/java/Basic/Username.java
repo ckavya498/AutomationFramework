@@ -1,0 +1,16 @@
+package Basic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class Username {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new EdgeDriver();
+		driver.get("file:///C:/Users/91812/Desktop/HTML/JavaSelenium/Username.html");
+		driver.findElement(By.tagName("input")).sendKeys("admin");
+	
+	}
+}

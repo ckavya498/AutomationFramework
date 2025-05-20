@@ -1,0 +1,10 @@
+package JavaScript_Executor;
+
+public class Take_Screenshot {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,10 @@
+package POM_Class;
+
+public class FaceBook_Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

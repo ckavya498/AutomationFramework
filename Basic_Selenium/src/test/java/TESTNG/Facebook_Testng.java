@@ -1,0 +1,18 @@
+package TESTNG;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+public class Facebook_Testng {
+	@Test
+	public void login() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/");
+		driver.findElement(By.id("email")).sendKeys("abcd@gmail.com");
+		driver.findElement(By.id("pass")).sendKeys("admin");
+		driver.findElement(By.xpath("//button[contains(@id,'u_0_5')]")).click();
+	}
+
+}

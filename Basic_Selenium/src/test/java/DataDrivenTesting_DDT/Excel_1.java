@@ -1,0 +1,39 @@
+package DataDrivenTesting_DDT;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class Excel_1 {
+	
+/*AssignQues: WATS to print excel sheet data as output if datasize is in 2*2 format
+        admin     manager
+       admin1     manager1 */
+
+	public static void main(String[] args) throws EncryptedDocumentException, IOException {
+		// TODO Auto-generated method stub
+		String path = "C://Users//91812//Desktop//excel.xlsx";
+        FileInputStream file = new FileInputStream(path);
+        Workbook book = WorkbookFactory.create(file);
+        Sheet s = book.getSheet("Sheet2");
+        int count = s.getLastRowNum();
+        for (int i=0; i<=count; i++) {
+        	Row r = s.getRow(i);
+        for (int j=0; j<=count; j++) {
+            Cell c = r.getCell(j);
+        String data = c.getStringCellValue();
+        System.out.print(data);
+        }
+		System.out.println();
+
+	}
+}
+}
+

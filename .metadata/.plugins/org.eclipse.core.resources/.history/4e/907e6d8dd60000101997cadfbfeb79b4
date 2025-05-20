@@ -1,0 +1,28 @@
+package Autosuggestion;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class CricbuzzApp {
+	
+//WATS to display players name with run in cricbuzz app 
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.cricbuzz.com/");
+		driver.findElement(By.className("cb-img-rad-0")).click();
+		driver.findElement(By.linkText("Scorecard")).click();
+		List<WebElement> r = driver.findElements(By.xpath("//a[@class='cb-text-link']/../..//div[@class='cb-col cb-col-8 text-right text-bold']"));
+		for(int i=0; i<r.size(); i++) {
+			WebElement str = r.get(i);
+			System.out.println(str.getText());
+		}
+				driver.close();
+		}
+	}
+

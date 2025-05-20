@@ -1,0 +1,80 @@
+package GenericUtlities;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+
+import objectRepository.InventoryPage;
+import objectRepository.LoginPage;
+
+/**
+ * This class consists of Basic configuration annotations of TestNG
+ * @author kavya
+ * @throws IOException
+ */
+
+public class BaseClass{
+	
+	FileUtility fUtil = new FileUtility();
+	ExcelFile eUtil = new ExcelFile();
+	JavaUtlility jUtil = new JavaUtlility();
+	SeleniumUtility sUtil = new SeleniumUtility();
+	
+	public WebDriver driver;
+	
+	@BeforeSuite
+	public void bsConfig() {
+		System.out.println("Database connection successful");		
+	}
+	
+	@BeforeClass
+	public void bcConfig() throws IOException {
+		String URL = fUtil.readDataFromPropertyfile("url");	
+		
+		driver = new EdgeDriver();
+		sUtil.maximizeWindow(driver);
+		sUtil.addImplicitWait(driver);
+		
+		driver.get(URL);
+		
+		System.out.println("Browser Launch successful");
+	}
+	
+	@BeforeMethod
+	public void bmConfig() throws IOException {
+		String USERNAME = fUtil.readDataFromPropertyfile("username");
+		String PASSWORD = fUtil.readDataFromPropertyfile("password");
+		
+		LoginPage lp = new LoginPage(driver);
+		lp.loginToApp(USERNAME, PASSWORD);
+		
+		System.out.println("Login to app successful");
+	}
+	
+	@AfterMethod
+	public void amConfig() {
+		InventoryPage ip = new InventoryPage(driver);
+		ip.logoutOfApp();
+		
+		System.out.println("Logout of app successful");
+	}
+	
+	@AfterClass
+	public void acConfig() {
+		driver.quit();
+		
+		System.out.println("Browser closure successful");
+	}
+	
+	@AfterSuite
+	public void asConfig() {
+		System.out.println("Database closure successful");
+	}
+}

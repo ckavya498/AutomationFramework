@@ -1,0 +1,33 @@
+package POM_Class;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class facebook_class {
+	private WebElement email;
+	private WebElement password;
+	private WebElement loginButton;
+	
+	public facebook_class(WebDriver driver) {
+		email = driver.findElement(By.xpath("//input[@id='email']"));
+		password = driver.findElement(By.xpath("//input[@id='pass']"));
+		loginButton = driver.findElement(By.xpath("//button[@name='login']"));   
+	}
+	
+	public void enteremail(String email_address) {
+		email.sendKeys(email_address);
+	}
+	public void enterPassword(String pwd) {
+		password.sendKeys(pwd);
+	}
+	public void clickOnLoginButton() {
+		loginButton();
+	}
+
+	private void loginButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

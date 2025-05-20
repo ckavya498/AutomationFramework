@@ -1,0 +1,67 @@
+package inventoryTests;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.Test;
+
+import GenericUtlities.BaseClass;
+import GenericUtlities.ExcelFile;
+import GenericUtlities.FileUtility;
+import GenericUtlities.JavaUtlility;
+import GenericUtlities.SeleniumUtility;
+import objectRepository.CartPage;
+import objectRepository.InventoryPage;
+import objectRepository.InvertoryItemPage;
+import objectRepository.LoginPage;
+
+public class AddLowestPriceProductToCartTest extends BaseClass{
+	
+	@Test
+	public void tc_02_addLowestPriceProductToCartTest() throws IOException {
+
+		// Read Data from excel file
+		String PRODUCTNAME = eUtil.readDataFromExcel("Products", 4, 3); // Run time data
+		String SORTOPTION = eUtil.readDataFromExcel("Products", 4, 2);
+		
+		// Launch the browser
+		WebDriver driver = new EdgeDriver();
+		sUtil.maximizeWindow(driver);
+		sUtil.addImplicitWait(driver);
+
+		// Load the URL
+		driver.get(URL);
+
+		// Login to Application
+		LoginPage lp = new LoginPage(driver);
+		lp.loginToApp(USERNAME, PASSWORD);
+
+		// Click on a product
+		InventoryPage ip = new InventoryPage(driver);
+		ip.clickOnLowestPriceProduct(driver, SORTOPTION, PRODUCTNAME);
+
+		// Click on add to cart
+		InvertoryItemPage iip = new InvertoryItemPage(driver);
+		iip.clickOnAddToCartBtn();
+
+		// Navigate to Cart
+		ip.clickOnCartContainer();
+
+		// Validate the product in Cart
+		CartPage cp = new CartPage(driver);
+		String ProductIncart = cp.captureItemName();
+		if (ProductIncart.equals(PRODUCTNAME)) {
+			System.out.println("PASS");
+			System.out.println(ProductIncart);
+		} else {
+			System.out.println("FAIL");
+		}
+
+		// Logout of Application
+		ip.logoutOfApp();
+	}
+
+
+}
