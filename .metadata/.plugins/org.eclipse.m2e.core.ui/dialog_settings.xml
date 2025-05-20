@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\91812\Desktop\Maven\QSP_AT_E25\Basic_Selenium"/>
 			<item value="C:\Users\91812\Desktop\Maven\QSP_AT_E25\E20_AutomationFramework"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -14,6 +15,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
